@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom';
 
+import imgFilm from '../../img/poster_film.jpg';
+import css from './MoviesList.module.css';
 const MoviesList = ({ movies }) => {
+  const getFilmImage = poster_path =>
+    `https://image.tmdb.org/t/p/w200/${poster_path}`;
+
   return (
-    <div>
-      <ul>
+    <div className={css.wrapp}>
+      <ul className={css.list}>
         {movies.map(({ poster_path, id, title }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`}>
+          <li key={id} className={css.item}>
+            <Link to={`/movies/${id}`} className={css.link}>
               <img
-                src={`https://image.tmdb.org/t/p/w200/${poster_path}`}
-                alt=""
+                className={css.img}
+                src={poster_path ? getFilmImage(poster_path) : imgFilm}
+                alt={title}
               />
-              <h2>{title}</h2>
+              <h2 className={css.title}>{title}</h2>
             </Link>
           </li>
         ))}

@@ -19,7 +19,6 @@ const HomePage = () => {
   }, []);
 
   return <MoviesList movies={trendings} />;
-  // return <div>HomePage</div>;
 };
 
 export default HomePage;

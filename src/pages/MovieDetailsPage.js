@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
 
-// import GoBackBtn from '../components/GoBackBtn/GoBackBtn';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
+
 import { getMovieById } from '../Servise/API';
 import MovieInfo from 'components/MovieInfo/MovieInfo';
+import GoBackBtn from 'components/GoBackBtn/GoBackBtn';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
-  // const location = useLocation();
+  const location = useLocation();
 
   const [movieInfo, setMovieInfo] = useState();
 
@@ -24,16 +25,21 @@ const MovieDetailsPage = () => {
     };
     fetchGetMovieById();
   }, [movieId]);
-  // const goBackPath = '/';
+
+  const goBackPath = location?.state?.from ?? '/';
 
   return (
     <div>
-      {/* <GoBackBtn path={goBackPath} /> */}
-      {movieInfo && <MovieInfo movie={movieInfo} />}
-      {/* <NavLink to="/cast"></NavLink>
-      <NavLink to="/reviews" />
+      <GoBackBtn path={goBackPath} />
 
-      <Outlet /> */}
+      {movieInfo && <MovieInfo movie={movieInfo} />}
+
+      <NavLink to="cast">cast</NavLink>
+      <NavLink to="reviews">reviews</NavLink>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
