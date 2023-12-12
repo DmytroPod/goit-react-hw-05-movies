@@ -22,12 +22,12 @@ export const getCast = async id => {
   return data;
 };
 export const getReviews = async id => {
-  const { data } = await axios.get(`3/movie/${id}/reviews`);
+  const { data } = await axios.get(`/3/movie/${id}/reviews`);
 
   return data;
 };
-// export const getReviews = async id => {
-//   const { data } = await axios.get(`3/movie/${id}/reviews`);
+export const getSearch = async query => {
+  const { data } = await axios.get(`/3/search/movie?query=${query}`);
 
-//   return data;
-// };
+  return data;
+};
