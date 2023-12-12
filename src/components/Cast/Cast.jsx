@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { getCast } from 'Servise/API';
 
-import imgActor from '../img/poster_cast.png';
+import imgActor from '..//../img/poster_cast.png';
 const Cast = () => {
   const { movieId } = useParams();
 

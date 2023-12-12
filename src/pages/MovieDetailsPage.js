@@ -33,10 +33,10 @@ const MovieDetailsPage = () => {
       <GoBackBtn path={goBackPath} />
 
       {movieInfo && <MovieInfo movie={movieInfo} />}
-
-      <NavLink to="cast">cast</NavLink>
-      <NavLink to="reviews">reviews</NavLink>
-
+      <div>
+        <NavLink to="cast">cast</NavLink>
+        <NavLink to="reviews">reviews</NavLink>
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
