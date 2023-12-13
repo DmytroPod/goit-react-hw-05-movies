@@ -10,7 +10,7 @@ const Layout = () => {
         <NavLink to="/movies">Movies</NavLink>
       </nav>
 
-      <main>
+      <main className={css.main}>
         <Outlet />
       </main>
     </div>

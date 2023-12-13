@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react';
+
 import { useLocation, useSearchParams } from 'react-router-dom';
+
 import { getSearch } from 'Servise/API';
+
 import MoviesList from 'components/MoviesList/MoviesList';
+
+import css from '../pages.css/MoviesPage.module.css';
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -46,16 +51,19 @@ const MoviesPage = () => {
 
   return (
     <>
-      <label>
+      <label className={css.label}>
         <form onSubmit={handleSubmit}>
           <input
+            className={css.input}
             placeholder="Enter movie name"
             type="text"
             name="search"
             value={searchValue}
             onChange={handleInputChange}
           />
-          <button type="submit">Search</button>
+          <button className={css.button} type="submit">
+            Search
+          </button>
         </form>
       </label>
       <MoviesList movies={moviesByName} location={location} />
