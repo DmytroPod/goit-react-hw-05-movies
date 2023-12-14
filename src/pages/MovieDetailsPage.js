@@ -1,6 +1,6 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { getMovieById } from '../Servise/API';
 
@@ -13,6 +13,8 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   const location = useLocation();
+
+  const goBeckLink = useRef(location?.state?.from ?? '/');
 
   const [movieInfo, setMovieInfo] = useState();
 
@@ -29,22 +31,24 @@ const MovieDetailsPage = () => {
     fetchGetMovieById();
   }, [movieId]);
 
+  const goBackPath = goBeckLink.current;
+
   return (
     <div>
-      <GoBackBtn path={location.state?.from || '/'} />
+      <GoBackBtn path={goBackPath} />
 
       {movieInfo && <MovieInfo movie={movieInfo} />}
       <div>
         <ul className={css.ul}>
           <li>
-            <Link to="cast" className={css.link}>
+            <NavLink to="cast" className={css.link}>
               cast
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="reviews" className={css.link}>
+            <NavLink to="reviews" className={css.link}>
               reviews
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

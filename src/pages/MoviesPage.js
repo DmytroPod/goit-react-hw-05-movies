@@ -13,17 +13,13 @@ const MoviesPage = () => {
   const [moviesByName, setMoviesByName] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
-  const location = useLocation();
-
   useEffect(() => {
+    const search = searchParams.get('search');
+    if (!search) {
+      return;
+    }
     const fetchgetSearch = async () => {
       try {
-        const search = searchParams.get('search');
-        if (!search) {
-          setMoviesByName([]);
-          return;
-        }
-
         const data = await getSearch(search);
         setMoviesByName(data.results);
       } catch (err) {
@@ -49,6 +45,7 @@ const MoviesPage = () => {
     setSearchValue(e.target.value);
   };
 
+  const location = useLocation();
   return (
     <>
       <label className={css.label}>

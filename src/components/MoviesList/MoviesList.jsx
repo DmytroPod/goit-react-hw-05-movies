@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import imgFilm from '../../img/poster_film.jpg';
+
 import css from './MoviesList.module.css';
+
 const MoviesList = ({ movies, location }) => {
   const getFilmImage = poster_path =>
     `https://image.tmdb.org/t/p/w200/${poster_path}`;
@@ -10,11 +12,12 @@ const MoviesList = ({ movies, location }) => {
     <div className={css.wrapp}>
       <ul className={css.list}>
         {movies.map(({ poster_path, id, title }) => (
-          <li key={id} className={css.item} state={{ from: location }}>
+          <li key={id} className={css.item}>
             <Link
               to={`/movies/${id}`}
               state={{ from: location }}
               className={css.link}
+              // location={location}
             >
               <img
                 className={css.img}
